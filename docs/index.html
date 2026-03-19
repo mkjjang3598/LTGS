@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Geo-Scene-Config</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+    <link
+      href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/bulma_toggle.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/5fd1dd8417.js" crossorigin="anonymous"></script>
+
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+
+    <!-- MathJax -->
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png"/>
+    <link rel="icon" sizes="32x32" href="./assets/favicon-32x32.png"/>
+    <link rel="icon" sizes="16x16" href="./assets/favicon-16x16.png"/>
+  </head>
+
+  <body>
+
+    <!-- title / authors / icons -->
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-widescreen has-text-centered">
+          <!-- title -->
+          <h1 class="title is-size-1 is-size-2-mobile publication-title">
+            Geometry-Aware Scene Configurations<br/>for Novel View Synthesis
+          </h1>
+          <div class="is-size-4-tablet publication-institute">
+            <span class="author-block">IEEE VR 2026 Poster<br/></span>
+          </div>
+
+          <!-- authors -->
+          <div class="container is-max-desktop has-text-centered author-list">
+            <div class="columns is-mobile is-centered is-gapless">
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="https://mkjjang3598.github.io">Minkwan Kim</a>
+              </div>
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="https://www.changwoon.info/">Changwoon Choi</a>
+              </div>
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="http://3d.snu.ac.kr/members">Young Min Kim</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="is-size-5-tablet publication-institute">
+            <span class="author-block">Seoul National University</span>
+          </div>
+          
+          <div class="logo-list">
+            <a class="lab-logo" href="https://3d.snu.ac.kr">
+              <img src="./assets/3dv.png">
+            </a>
+          </div>
+
+          <!-- icons -->
+          <div class="is-size-5 link-blocks">
+            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09880">
+              <span class="icon">
+                <i class="fa-solid fa-file"></i>
+              </span>
+              <span>Paper</span>
+            </a>
+            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09880">
+              <span class="icon">
+                <i class="ai ai-arxiv"></i>
+              </span>
+              <span>arXiv</span>
+            </a>
+            <a class="button link-button is-rounded" href="https://www.youtube.com/watch?v=U5001zsHz6w">
+              <span class="icon">
+                <i class="fa-brands fa-youtube"></i>
+              </span>
+              <span>Video</span>
+            </a>
+            <a class="button link-button is-rounded" href="https://github.com/mkjjang3598/Geo-Scene-Config">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>Code</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- teasor -->
+    <section class="hero">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="./assets/teaser.png" width="100%" style="display: block; margin: auto" />
+          <h2 class="tldr">
+            <i>After recording measurement statistics as coverage weights on geometry scaffold, </br> we find <b>optimal basis positions</b> and <b>training-view configurations</b> in indoor environments.</i>
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Abstract
+          </h2>
+          <div class="content has-text-justified">
+            <p>
+              We propose scene-adaptive strategies to efficiently allocate representation capacity for generating immersive experiences of indoor environments from incomplete observations.
+              Indoor scenes with multiple rooms often exhibit irregular layouts with varying complexity, containing clutter, occlusion, and flat walls.
+              We maximize the utilization of limited resources with guidance from geometric priors, which are often readily available after pre-processing stages.
+              We record observation statistics on the estimated geometric scaffold and guide the optimal placement of bases, which greatly improves upon the uniform basis arrangements adopted by previous scalable scene representations.
+              We also suggest scene-adaptive virtual viewpoints to compensate for geometric deficiencies inherent in view configurations in the input trajectory and impose the necessary regularization.
+              We present a comprehensive analysis and discussion regarding rendering quality and memory requirements in several large-scale indoor scenes, demonstrating significant enhancements compared to baselines that employ regular placements.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is full-width is-centered has-text-centered">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Video (todo)
+          </h2>
+        </div>
+        <div class="publication-video">
+          <iframe
+            src="https://www.youtube.com/embed/7mWPYGRfk-I?si=x0xlB16kK1TOXN_I"
+            allow="autoplay; encrypted-media"
+            allowfullscreen="true"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+-->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Method
+          </h2>
+          <img src="./assets/method_new.png" width="90%" style="display: block; margin: auto" />
+        </div>
+          <p class="normal-text has-text-justified">
+            <b>Method Overview.</b> (a) We first extract the geometric scaffold from multi-view image observation.
+            (b) Then we define coverage weights $w_i$ for surface points $\mathbf{x}_i$ on the obtained mesh surface, which consider both scene geometry and observation statistics.
+            Starting from bases sampled along the camera trajectory using the FPS algorithm, we optimize their positions by minimizing the energy function $\mathcal{L}_{\text{cov}}$.
+            (c) Finally, we optimize radiance fields with RGB supervision, guided by geometric regularization on training and virtual viewpoints.
+          </p>
+      </div>
+      </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Free-Viewpoint Rendering
+          </h2>
+        </div>
+        <video width="100%" style="display: block; margin: auto" autoplay loop muted playsinline>
+          <source src="./assets/results/supple_video.mp4" type="video/mp4" />
+        </video>
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          <b>Free-viewpoint rendering</b> on the Zip-NeRF <i>NYC</i> scene. By applying our geometry-aware scene configuration to <b>NeLF-Pro</b> and <b>LocalRF</b>, we demonstrate consistent improvements in rendering quality. Results generated from just <b>250 views</b>.
+        </p>
+        <br/>
+      </div>
+    </section>
+
+
+    <!-- ScanNet++ Results -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Results <font size="4%">(ScanNet++ dataset)</font>
+          </h2>
+        </div>
+        <table style="width:100%; table-layout:fixed; border-collapse:separate; border-spacing:3px; text-align:center;">
+          <colgroup>
+            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
+            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
+          </colgroup>
+          <thead>
+            <tr class="normal-text">
+              <th>GT</th><th>Nerfacto</th><th>Depth-Nerfacto</th><th>3DGS</th><th>NeLF-Pro</th><th>Ours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="./assets/results/scannetpp/281ba69af1/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/281ba69af1/nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/281ba69af1/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/281ba69af1/3dgs.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/281ba69af1/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/281ba69af1/ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+            <tr>
+              <td><img src="./assets/results/scannetpp/785e7504b9/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/785e7504b9/nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/785e7504b9/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/785e7504b9/3dgs.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/785e7504b9/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/785e7504b9/ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+            <tr>
+              <td><img src="./assets/results/scannetpp/bb87c292ad/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/bb87c292ad/nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/bb87c292ad/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/bb87c292ad/3dgs.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/bb87c292ad/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/bb87c292ad/ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+            <tr>
+              <td><img src="./assets/results/scannetpp/e91722b5a3/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/e91722b5a3/nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/e91722b5a3/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/e91722b5a3/3dgs.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/e91722b5a3/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/scannetpp/e91722b5a3/ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          <b>Qualitative results of novel view synthesis on ScanNet++ dataset.</b> 
+          We compare our framework against NeRFacto, depth-regularized NeRFacto, 3DGS, and NeLF-Pro under severe extrapolation scenario.
+        </p>
+      </div>
+    </section>
+
+    <!-- Zip-NeRF Results -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Results <font size="4%">(Zip-NeRF dataset)</font>
+          </h2>
+        </div>
+        <table style="width:100%; table-layout:fixed; border-collapse:separate; border-spacing:3px; text-align:center;">
+          <colgroup>
+            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
+            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
+          </colgroup>
+          <thead>
+            <tr class="normal-text">
+              <th>GT</th><th>Mega-NeRF</th><th>NeLF-Pro</th><th>NeLF-Pro + Ours</th><th>LocalRF</th><th>LocalRF + Ours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="./assets/results/zipnerf/alameda/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/alameda/mega-nerf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/alameda/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/alameda/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/alameda/localrf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/alameda/localrf_ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+            <tr>
+              <td><img src="./assets/results/zipnerf/berlin/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/berlin/mega-nerf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/berlin/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/berlin/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/berlin/localrf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/berlin/localrf_ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+            <tr>
+              <td><img src="./assets/results/zipnerf/london/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/london/mega-nerf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/london/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/london/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/london/localrf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/london/localrf_ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+            <tr>
+              <td><img src="./assets/results/zipnerf/nyc/gt.JPG" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/nyc/mega-nerf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/nyc/nelf-pro.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/nyc/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/nyc/localrf.jpg" style="width:100%;display:block"/></td>
+              <td><img src="./assets/results/zipnerf/nyc/localrf_ours.jpg" style="width:100%;display:block"/></td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          <b>Qualitative results of novel view synthesis on Zip-NeRF dataset.</b> We compare our method against Mega-NeRF, NeLF-Pro, and LocalRF which leverage multiple bases for large-scale indoor scenes.
+        </p>
+      </div>
+    </section>
+
+    <!-- Additional 3DGS Comparison -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Additional Comparison to SOTA 3DGS
+          </h2>
+        </div>
+        <img src="./assets/results/3gs_comparison_scannetpp.png" width="100%" style="display:block; margin:auto" />
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          <b>Qualitative comparison on ScanNet++.</b> Our method outperforms state-of-the-art 3D Gaussian Splatting baselines under the sparse-view setting, producing sharper textures and fewer artifacts in challenging indoor scenes.
+        </p>
+        <br/>
+        <img src="./assets/results/3gs_comparison_zipnerf.png" width="100%" style="display:block; margin:auto" />
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          <b>Qualitative comparison on Zip-NeRF.</b> Our geometry-aware scene configuration consistently improves rendering quality over 3DGS baselines on large-scale unbounded outdoor scenes, demonstrating generalization beyond indoor environments.
+        </p>
+      </div>
+    </section>
+
+    <!-- BibTex sectoion -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">BibTeX</h2>
+        </div>
+        <div class="box bibtex-box">
+          <pre>
+@article{kim2025geometry,
+  title={Geometry-Aware Scene Configurations for Novel View Synthesis},
+  author={Kim, Minkwan and Choi, Changwoon and Kim, Young Min},
+  journal={arXiv preprint arXiv:2510.09880},
+  year={2025}
+}
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="footer" style="padding-top: 1rem">
+      <!-- navigation -->
+      <a role="button" class="navbar-burger" data-target="moreResearch" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+      <div class="navbar-menu" id="moreResearch">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center">
+          <div class="block is-flex" style="margin-bottom: 0px">
+            <a class="navbar-item" href="https://hojunjang17.github.io">
+              <span class="icon">
+                <i class="fas fa-home"></i>
+              </span>
+            </a>
+            <a class="navbar-item" href="https://github.com/hojunJang17">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- license -->
+      <div class="content has-text-centered" style="margin-top: 1.6rem">
+        <p>
+          This website is licensed under a
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"
+            >Creative Commons Attribution-ShareAlike 4.0 International License</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+
+</html>
