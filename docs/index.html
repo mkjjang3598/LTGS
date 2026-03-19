@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Geo-Scene-Config</title>
+    <title>LTGS</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,10 +47,10 @@
         <div class="container is-max-widescreen has-text-centered">
           <!-- title -->
           <h1 class="title is-size-1 is-size-2-mobile publication-title">
-            Geometry-Aware Scene Configurations<br/>for Novel View Synthesis
+            LTGS: Long-Term Gaussian Scene Chronology<br/>From Sparse View Updates
           </h1>
           <div class="is-size-4-tablet publication-institute">
-            <span class="author-block">IEEE VR 2026 Poster<br/></span>
+            <span class="author-block">CVPR 2026 Findings Track<br/></span>
           </div>
 
           <!-- authors -->
@@ -60,7 +60,10 @@
                 <a class="author-blocks" href="https://mkjjang3598.github.io">Minkwan Kim</a>
               </div>
               <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
-                <a class="author-blocks" href="https://www.changwoon.info/">Changwoon Choi</a>
+                <a class="author-blocks" href="https://veldic.github.io">Seungmin Lee</a>
+              </div>
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="https://www.junhokim.xyz">Junho Kim</a>
               </div>
               <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
                 <a class="author-blocks" href="http://3d.snu.ac.kr/members">Young Min Kim</a>
@@ -80,13 +83,13 @@
 
           <!-- icons -->
           <div class="is-size-5 link-blocks">
-            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09880">
+            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09881v2">
               <span class="icon">
                 <i class="fa-solid fa-file"></i>
               </span>
               <span>Paper</span>
             </a>
-            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09880">
+            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09881v2">
               <span class="icon">
                 <i class="ai ai-arxiv"></i>
               </span>
@@ -98,7 +101,7 @@
               </span>
               <span>Video</span>
             </a>
-            <a class="button link-button is-rounded" href="https://github.com/mkjjang3598/Geo-Scene-Config">
+            <a class="button link-button is-rounded" href="https://github.com/mkjjang3598/LTGS">
               <span class="icon">
                 <i class="fab fa-github"></i>
               </span>
@@ -115,7 +118,7 @@
         <div class="hero-body">
           <img src="./assets/teaser.png" width="100%" style="display: block; margin: auto" />
           <h2 class="tldr">
-            <i>After recording measurement statistics as coverage weights on geometry scaffold, </br> we find <b>optimal basis positions</b> and <b>training-view configurations</b> in indoor environments.</i>
+            <i> We introduce <b>LTGS</b> to efficiently update the Gaussian reconstruction of the initial environments. Given the spatiotemporally sparse post-change images, our framework tracks object-level changes in 3D and models <b>long-term scene evolution</b>.</i>
           </h2>
         </div>
       </div>
@@ -129,12 +132,7 @@
           </h2>
           <div class="content has-text-justified">
             <p>
-              We propose scene-adaptive strategies to efficiently allocate representation capacity for generating immersive experiences of indoor environments from incomplete observations.
-              Indoor scenes with multiple rooms often exhibit irregular layouts with varying complexity, containing clutter, occlusion, and flat walls.
-              We maximize the utilization of limited resources with guidance from geometric priors, which are often readily available after pre-processing stages.
-              We record observation statistics on the estimated geometric scaffold and guide the optimal placement of bases, which greatly improves upon the uniform basis arrangements adopted by previous scalable scene representations.
-              We also suggest scene-adaptive virtual viewpoints to compensate for geometric deficiencies inherent in view configurations in the input trajectory and impose the necessary regularization.
-              We present a comprehensive analysis and discussion regarding rendering quality and memory requirements in several large-scale indoor scenes, demonstrating significant enhancements compared to baselines that employ regular placements.
+              Recent advances in novel-view synthesis can create the photo-realistic visualization of real-world environments from conventional camera captures. However, the everyday environment experiences frequent scene changes, which require dense observations, both spatially and temporally, that an ordinary setup cannot cover. We propose long-term Gaussian scene chronology from sparse-view updates, coined <b>LTGS</b>, an efficient scene representation that can embrace everyday changes from highly under-constrained casual captures. Given an incomplete and unstructured 3D Gaussian Splatting (3DGS) representation obtained from an initial set of input images, we robustly model the long-term chronology of the scene despite abrupt movements and subtle environmental variations. We construct objects as template Gaussians, which serve as structural, reusable priors for shared object tracks. Then, the object templates undergo a further refinement pipeline that modulates the priors to adapt to temporally varying environments given few-shot observations. Once trained, our framework is generalizable across multiple time steps through simple transformations, significantly enhancing the scalability for a temporal evolution of 3D environments. As existing datasets do not explicitly represent the long-term real-world changes with a sparse capture setup, we collect real-world datasets to evaluate the practicality of our pipeline. Experiments demonstrate that our framework achieves superior reconstruction quality compared to other baselines while enabling fast and light-weight updates.
             </p>
           </div>
         </div>
@@ -167,10 +165,9 @@
           <img src="./assets/method_new.png" width="90%" style="display: block; margin: auto" />
         </div>
           <p class="normal-text has-text-justified">
-            <b>Method Overview.</b> (a) We first extract the geometric scaffold from multi-view image observation.
-            (b) Then we define coverage weights $w_i$ for surface points $\mathbf{x}_i$ on the obtained mesh surface, which consider both scene geometry and observation statistics.
-            Starting from bases sampled along the camera trajectory using the FPS algorithm, we optimize their positions by minimizing the energy function $\mathcal{L}_{\text{cov}}$.
-            (c) Finally, we optimize radiance fields with RGB supervision, guided by geometric regularization on training and virtual viewpoints.
+            <b>Method Overview.</b> We propose an integrated pipeline to update an initial reconstruction given the collection of post-change
+            captures. Our pipeline first estimates the camera poses of the input capture and compares them against renderings of the initial reconstruction in the same view to detect object-level changes. We aggregate detected objects from multiple viewpoints and timestamps to create 3D
+            Gaussian templates, and finally update the temporal scenes by compositing the templates at their respective states with the background.
           </p>
       </div>
       </section>
@@ -179,160 +176,39 @@
       <div class="container is-max-desktop">
         <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
           <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
-            Free-Viewpoint Rendering
+            Long-term Scene Reconstruction
           </h2>
         </div>
-        <video width="100%" style="display: block; margin: auto" autoplay loop muted playsinline>
-          <source src="./assets/results/supple_video.mp4" type="video/mp4" />
+        <video width="80%" style="display: block; margin: auto" autoplay loop muted playsinline>
+          <source src="./assets/results/livingroom.mp4" type="video/mp4" />
         </video>
         <br/>
         <p align="left" class="normal-text has-text-justified">
-          <b>Free-viewpoint rendering</b> on the Zip-NeRF <i>NYC</i> scene. By applying our geometry-aware scene configuration to <b>NeLF-Pro</b> and <b>LocalRF</b>, we demonstrate consistent improvements in rendering quality. Results generated from just <b>250 views</b>.
+          Free-trajectory video demonstrating the initial reconstruction alongside the input images, followed by the complete temporally reconstructed scene.
+        </p>
+        <br/>
+        <video width="80%" style="display: block; margin: auto" autoplay loop muted playsinline>
+        <source src="./assets/results/mac.mp4" type="video/mp4" />
+        </video>
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          Free-trajectory video of the scene showcasing the initial reconstruction, input images, and temporally reconstructed scene, including complex object articulation.
         </p>
         <br/>
       </div>
     </section>
 
-
-    <!-- ScanNet++ Results -->
     <section class="section">
       <div class="container is-max-desktop">
         <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
           <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
-            Results <font size="4%">(ScanNet++ dataset)</font>
+            Results
           </h2>
         </div>
-        <table style="width:100%; table-layout:fixed; border-collapse:separate; border-spacing:3px; text-align:center;">
-          <colgroup>
-            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
-            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
-          </colgroup>
-          <thead>
-            <tr class="normal-text">
-              <th>GT</th><th>Nerfacto</th><th>Depth-Nerfacto</th><th>3DGS</th><th>NeLF-Pro</th><th>Ours</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="./assets/results/scannetpp/281ba69af1/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/281ba69af1/nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/281ba69af1/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/281ba69af1/3dgs.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/281ba69af1/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/281ba69af1/ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-            <tr>
-              <td><img src="./assets/results/scannetpp/785e7504b9/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/785e7504b9/nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/785e7504b9/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/785e7504b9/3dgs.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/785e7504b9/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/785e7504b9/ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-            <tr>
-              <td><img src="./assets/results/scannetpp/bb87c292ad/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/bb87c292ad/nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/bb87c292ad/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/bb87c292ad/3dgs.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/bb87c292ad/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/bb87c292ad/ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-            <tr>
-              <td><img src="./assets/results/scannetpp/e91722b5a3/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/e91722b5a3/nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/e91722b5a3/depth-nerfacto.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/e91722b5a3/3dgs.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/e91722b5a3/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/scannetpp/e91722b5a3/ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-          </tbody>
-        </table>
+        <img src="./assets/results/qualitative.png" width="100%" style="display:block; margin:auto" />
         <br/>
         <p align="left" class="normal-text has-text-justified">
-          <b>Qualitative results of novel view synthesis on ScanNet++ dataset.</b> 
-          We compare our framework against NeRFacto, depth-regularized NeRFacto, 3DGS, and NeLF-Pro under severe extrapolation scenario.
-        </p>
-      </div>
-    </section>
-
-    <!-- Zip-NeRF Results -->
-    <section class="section">
-      <div class="container is-max-desktop">
-        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
-          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
-            Results <font size="4%">(Zip-NeRF dataset)</font>
-          </h2>
-        </div>
-        <table style="width:100%; table-layout:fixed; border-collapse:separate; border-spacing:3px; text-align:center;">
-          <colgroup>
-            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
-            <col style="width:16.66%"><col style="width:16.66%"><col style="width:16.66%">
-          </colgroup>
-          <thead>
-            <tr class="normal-text">
-              <th>GT</th><th>Mega-NeRF</th><th>NeLF-Pro</th><th>NeLF-Pro + Ours</th><th>LocalRF</th><th>LocalRF + Ours</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="./assets/results/zipnerf/alameda/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/alameda/mega-nerf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/alameda/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/alameda/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/alameda/localrf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/alameda/localrf_ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-            <tr>
-              <td><img src="./assets/results/zipnerf/berlin/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/berlin/mega-nerf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/berlin/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/berlin/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/berlin/localrf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/berlin/localrf_ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-            <tr>
-              <td><img src="./assets/results/zipnerf/london/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/london/mega-nerf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/london/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/london/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/london/localrf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/london/localrf_ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-            <tr>
-              <td><img src="./assets/results/zipnerf/nyc/gt.JPG" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/nyc/mega-nerf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/nyc/nelf-pro.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/nyc/nelf-pro_ours.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/nyc/localrf.jpg" style="width:100%;display:block"/></td>
-              <td><img src="./assets/results/zipnerf/nyc/localrf_ours.jpg" style="width:100%;display:block"/></td>
-            </tr>
-          </tbody>
-        </table>
-        <br/>
-        <p align="left" class="normal-text has-text-justified">
-          <b>Qualitative results of novel view synthesis on Zip-NeRF dataset.</b> We compare our method against Mega-NeRF, NeLF-Pro, and LocalRF which leverage multiple bases for large-scale indoor scenes.
-        </p>
-      </div>
-    </section>
-
-    <!-- Additional 3DGS Comparison -->
-    <section class="section">
-      <div class="container is-max-desktop">
-        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
-          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
-            Additional Comparison to SOTA 3DGS
-          </h2>
-        </div>
-        <img src="./assets/results/3gs_comparison_scannetpp.png" width="100%" style="display:block; margin:auto" />
-        <br/>
-        <p align="left" class="normal-text has-text-justified">
-          <b>Qualitative comparison on ScanNet++.</b> Our method outperforms state-of-the-art 3D Gaussian Splatting baselines under the sparse-view setting, producing sharper textures and fewer artifacts in challenging indoor scenes.
-        </p>
-        <br/>
-        <img src="./assets/results/3gs_comparison_zipnerf.png" width="100%" style="display:block; margin:auto" />
-        <br/>
-        <p align="left" class="normal-text has-text-justified">
-          <b>Qualitative comparison on Zip-NeRF.</b> Our geometry-aware scene configuration consistently improves rendering quality over 3DGS baselines on large-scale unbounded outdoor scenes, demonstrating generalization beyond indoor environments.
+          <b>Qualitative comparisons of our method.</b> We illustrate the results of our method using the CL-NeRF dataset and our dataset.
         </p>
       </div>
     </section>
@@ -345,10 +221,10 @@
         </div>
         <div class="box bibtex-box">
           <pre>
-@article{kim2025geometry,
-  title={Geometry-Aware Scene Configurations for Novel View Synthesis},
-  author={Kim, Minkwan and Choi, Changwoon and Kim, Young Min},
-  journal={arXiv preprint arXiv:2510.09880},
+@article{kim2025ltgs,
+  title={LTGS: Long-Term Gaussian Scene Chronology From Sparse View Updates},
+  author={Kim, Minkwan and Lee, Seungmin and Kim, Junho and Kim, Young Min},
+  journal={arXiv preprint arXiv:2510.09881},
   year={2025}
 }
           </pre>
@@ -367,12 +243,12 @@
       <div class="navbar-menu" id="moreResearch">
         <div class="navbar-start" style="flex-grow: 1; justify-content: center">
           <div class="block is-flex" style="margin-bottom: 0px">
-            <a class="navbar-item" href="https://hojunjang17.github.io">
+            <a class="navbar-item" href="https://mkjjang3598.github.io">
               <span class="icon">
                 <i class="fas fa-home"></i>
               </span>
             </a>
-            <a class="navbar-item" href="https://github.com/hojunJang17">
+            <a class="navbar-item" href="https://github.com/mkjjang3598">
               <span class="icon">
                 <i class="fab fa-github"></i>
               </span>
