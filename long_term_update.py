@@ -278,8 +278,10 @@ def update_3dgs(dataset: ModelParams, opt: UpdateParams, pipe: PipelineParams, i
         src_indices = [idx for idx in range(len(input_imagefiles)) if idx % 2 == 0]
         tgt_indices = [idx for idx in range(len(input_imagefiles)) if idx % 2 != 0]
 
-        descriptors = fuse_descriptors(input_imagefiles, input_object_masks, input_change_cameras, src_pcds, tgt_pcds, src_indices, tgt_indices, output_dir)
-        
+        if len(temporal_pcd) == 0:
+            descriptors = {}
+        else:
+            descriptors = fuse_descriptors(input_imagefiles, input_object_masks, input_change_cameras, src_pcds, tgt_pcds, src_indices, tgt_indices, output_dir)
         fused_descriptors[time_idx] = descriptors
 
     est_mats, removed_obj_labels, inserted_obj_labels, matching_obj_labels = {}, {}, {}, {}
@@ -378,6 +380,7 @@ def update_3dgs(dataset: ModelParams, opt: UpdateParams, pipe: PipelineParams, i
                 inserted_obj_label.remove(obj_label)
                 removed_obj_label.remove(obj_label) 
                 tgt_pcds.pop(obj_label)
+                
             if obj_label in matching_obj_label:
                 inserted_obj_label.remove(int(obj_label))
                 removed_obj_label.remove(int(obj_label)) 
@@ -769,8 +772,8 @@ def refine_optimize(dataset, opt, pipe, gaussians, scene, hloc_cameras, canonica
                 print("\n[ITER {}] Saving Gaussians".format(iteration))
                 scene.save(iteration)
                 ## Save temporal gaussians
-                # for time_idx in range(len(temporal_inputs)):
-                #     scene.save_temporal(iteration, object_indices, object_tracks, est_mats, opacity_filters, time_idx, separate_sh=SPARSE_ADAM_AVAILABLE)
+                for time_idx in range(len(temporal_inputs)):
+                    scene.save_temporal(iteration, object_indices, object_tracks, est_mats, opacity_filters, time_idx, separate_sh=SPARSE_ADAM_AVAILABLE)
 
             # Densification -> We don't use densification for updates
             # if iteration < opt.densify_until_iter:
