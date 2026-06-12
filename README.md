@@ -1,6 +1,7 @@
 # LTGS: Long-Term Gaussian Scene Chronology From Sparse View Updates
 
-**CVPR 2026 (Findings)**
+Official code for **"LTGS: Long-Term Gaussian Scene Chronology From Sparse View Updates"**
+accepted to **CVPR 2026 (Findings)**.
 
 [Minkwan Kim](https://mkjjang3598.github.io) · [Seungmin Lee](https://veldic.github.io) · [Junho Kim](https://www.junhokim.xyz) · [Young Min Kim](http://3d.snu.ac.kr/members)
 
