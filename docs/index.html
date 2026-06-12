@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LTGS</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+    <link
+      href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/bulma_toggle.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/5fd1dd8417.js" crossorigin="anonymous"></script>
+
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+
+    <!-- MathJax -->
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png"/>
+    <link rel="icon" sizes="32x32" href="./assets/favicon-32x32.png"/>
+    <link rel="icon" sizes="16x16" href="./assets/favicon-16x16.png"/>
+  </head>
+
+  <body>
+
+    <!-- title / authors / icons -->
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-widescreen has-text-centered">
+          <!-- title -->
+          <h1 class="title is-size-1 is-size-2-mobile publication-title">
+            LTGS: Long-Term Gaussian Scene Chronology<br/>From Sparse View Updates
+          </h1>
+          <div class="is-size-4-tablet publication-institute">
+            <span class="author-block">CVPR 2026 (Findings)<br/></span>
+          </div>
+
+          <!-- authors -->
+          <div class="container is-max-desktop has-text-centered author-list">
+            <div class="columns is-mobile is-centered is-gapless">
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="https://mkjjang3598.github.io">Minkwan Kim</a>
+              </div>
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="https://veldic.github.io">Seungmin Lee</a>
+              </div>
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="https://www.junhokim.xyz">Junho Kim</a>
+              </div>
+              <div class="column is-2-tablet is-size-5-tablet publication-authors" style="white-space: nowrap;">
+                <a class="author-blocks" href="http://3d.snu.ac.kr/members">Young Min Kim</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="is-size-5-tablet publication-institute">
+            <span class="author-block">Seoul National University</span>
+          </div>
+          
+          <div class="logo-list">
+            <a class="lab-logo" href="https://3d.snu.ac.kr">
+              <img src="./assets/3dv.png">
+            </a>
+          </div>
+
+          <!-- icons -->
+          <div class="is-size-5 link-blocks">
+            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09881v2">
+              <span class="icon">
+                <i class="fa-solid fa-file"></i>
+              </span>
+              <span>Paper</span>
+            </a>
+            <a class="button link-button is-rounded" href="https://arxiv.org/abs/2510.09881v2">
+              <span class="icon">
+                <i class="ai ai-arxiv"></i>
+              </span>
+              <span>arXiv</span>
+            </a>
+            <a class="button link-button is-rounded" href="https://www.youtube.com">
+              <span class="icon">
+                <i class="fa-brands fa-youtube"></i>
+              </span>
+              <span>Video</span>
+            </a>
+            <a class="button link-button is-rounded" href="https://github.com/mkjjang3598/LTGS">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>Code</span>
+            </a>
+            <a class="button link-button is-rounded" href="https://drive.google.com/file/d/1qcsMhZKjr0nCiK2chGHzVUmMG5DX6gFr/view?usp=drive_link">
+              <span class="icon">
+                <i class="fab fa-google-drive"></i>
+              </span>
+              <span>Dataset</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- teasor -->
+    <section class="hero">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="./assets/teaser.png" width="100%" style="display: block; margin: auto" />
+          <h2 class="tldr">
+            <i> We introduce <b>LTGS</b> to efficiently update the Gaussian reconstruction of the initial environments. Given the spatiotemporally sparse post-change images, our framework tracks object-level changes in 3D and models <b>long-term scene evolution</b>.</i>
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Abstract
+          </h2>
+          <div class="content has-text-justified">
+            <p>
+              Recent advances in novel-view synthesis can create the photo-realistic visualization of real-world environments from conventional camera captures. However, the everyday environment experiences frequent scene changes, which require dense observations, both spatially and temporally, that an ordinary setup cannot cover. We propose long-term Gaussian scene chronology from sparse-view updates, coined <b>LTGS</b>, an efficient scene representation that can embrace everyday changes from highly under-constrained casual captures. Given an incomplete and unstructured 3D Gaussian Splatting (3DGS) representation obtained from an initial set of input images, we robustly model the long-term chronology of the scene despite abrupt movements and subtle environmental variations. We construct objects as template Gaussians, which serve as structural, reusable priors for shared object tracks. Then, the object templates undergo a further refinement pipeline that modulates the priors to adapt to temporally varying environments given few-shot observations. Once trained, our framework is generalizable across multiple time steps through simple transformations, significantly enhancing the scalability for a temporal evolution of 3D environments. As existing datasets do not explicitly represent the long-term real-world changes with a sparse capture setup, we collect real-world datasets to evaluate the practicality of our pipeline. Experiments demonstrate that our framework achieves superior reconstruction quality compared to other baselines while enabling fast and light-weight updates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is full-width is-centered has-text-centered">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Video (todo)
+          </h2>
+        </div>
+        <div class="publication-video">
+          <iframe
+            src="https://www.youtube.com/embed/7mWPYGRfk-I?si=x0xlB16kK1TOXN_I"
+            allow="autoplay; encrypted-media"
+            allowfullscreen="true"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+-->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Method
+          </h2>
+          <img src="./assets/method_new.png" width="90%" style="display: block; margin: auto" />
+        </div>
+          <p class="normal-text has-text-justified">
+            <b>Method Overview.</b> We propose an integrated pipeline to update an initial reconstruction given the collection of post-change
+            captures. Our pipeline first estimates the camera poses of the input capture and compares them against renderings of the initial reconstruction in the same view to detect object-level changes. We aggregate detected objects from multiple viewpoints and timestamps to create 3D
+            Gaussian templates, and finally update the temporal scenes by compositing the templates at their respective states with the background.
+          </p>
+      </div>
+      </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Long-term Scene Reconstruction
+          </h2>
+        </div>
+        <video width="80%" style="display: block; margin: auto" autoplay loop muted playsinline>
+          <source src="./assets/results/livingroom.mp4" type="video/mp4" />
+        </video>
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          Free-trajectory video demonstrating the initial reconstruction alongside the input images, followed by the complete temporally reconstructed scene.
+        </p>
+        <br/>
+        <video width="80%" style="display: block; margin: auto" autoplay loop muted playsinline>
+        <source src="./assets/results/mac.mp4" type="video/mp4" />
+        </video>
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          Free-trajectory video of the scene showcasing the initial reconstruction, input images, and temporally reconstructed scene, including complex object articulation.
+        </p>
+        <br/>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">
+            Results
+          </h2>
+        </div>
+        <img src="./assets/results/qualitative.png" width="100%" style="display:block; margin:auto" />
+        <br/>
+        <p align="left" class="normal-text has-text-justified">
+          <b>Qualitative comparisons of our method.</b> We illustrate the results of our method using the CL-NeRF dataset and our dataset.
+        </p>
+      </div>
+    </section>
+
+    <!-- BibTex sectoion -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-full-width is-centered has-text-centered has-text-left-mobile">
+          <h2 class="subtitle is-size-3 has-text-weight-medium publication-keywords">BibTeX</h2>
+        </div>
+        <div class="box bibtex-box">
+          <pre>
+@inproceedings{kim2026ltgs,
+  title={LTGS: Long-Term Gaussian Scene Chronology From Sparse View Updates},
+  author={Kim, Minkwan and Lee, Seungmin and Kim, Junho and Kim, Young Min},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={488--497},
+  year={2026}
+}
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="footer" style="padding-top: 1rem">
+      <!-- navigation -->
+      <a role="button" class="navbar-burger" data-target="moreResearch" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+      <div class="navbar-menu" id="moreResearch">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center">
+          <div class="block is-flex" style="margin-bottom: 0px">
+            <a class="navbar-item" href="https://mkjjang3598.github.io">
+              <span class="icon">
+                <i class="fas fa-home"></i>
+              </span>
+            </a>
+            <a class="navbar-item" href="https://github.com/mkjjang3598">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- license -->
+      <div class="content has-text-centered" style="margin-top: 1.6rem">
+        <p>
+          This website is licensed under a
+          <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"
+            >Creative Commons Attribution-ShareAlike 4.0 International License</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+
+</html>

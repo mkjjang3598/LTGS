@@ -1,0 +1,15 @@
+[submodule "gaussian-splatting"]
+	path = gaussian-splatting
+	url = https://github.com/mkjjang3598/gaussian-splatting.git
+[submodule "submodules/mast3r"]
+	path = submodules/mast3r
+	url = https://github.com/mkjjang3598/mast3r.git
+[submodule "submodules/Hierarchical-Localization"]
+	path = submodules/Hierarchical-Localization
+	url = https://github.com/cvg/Hierarchical-Localization.git
+[submodule "submodules/TEASER-plusplus"]
+	path = submodules/TEASER-plusplus
+	url = https://github.com/MIT-SPARK/TEASER-plusplus.git
+[submodule "submodules/GeSCF"]
+	path = submodules/GeSCF
+	url = https://github.com/mkjjang3598/GeSCF.git
