@@ -120,10 +120,10 @@ Place them under `gaussian-splatting/output/`:
 ```
 gaussian-splatting/output/
 ├── livingroom_first_state/
-├── cafe_first_state/
-├── diningroom_first_state/
-├── lab_first_state/
-└── hall_first_state/
+├── cafe_first_state_sfm_all/
+├── diningroom_first_state_sfm_all/
+├── lab_first_state_sfm_all/
+└── hall_first_state_sfm_all/
 ```
 
 If using the pretrained models, skip Step 1 below.
